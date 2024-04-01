@@ -1,37 +1,41 @@
 // Reading and writing to a file asynchronously
 const fs = require("node:fs");
+const path = require("node:path");
 
-let message = "Hi there, my name is Lenox 👋 \nA back-end software developer";
-let messageAppend = ", proficient in node.js";
+// path name
+const pathName = path.join(__dirname, "Files", "data-asynch.txt");
 
-// Reading a file
-fs.readFile("./Files/data-asynch.txt", "utf-8", (err, data) => {
-  console.log(data);
+// data to be written and appended
+const message = "Hi there, my name is Lenox 👋 \nA back-end software developer";
+const messageAppend = ", proficient in node.js";
 
-  //writing a message on a file.
-  fs.writeFile("./Files/new-asynch.txt", message, () => {
-    console.log("\nwriting a file ... ... file successfully written");
-
-    //reading a file after being written.
-    fs.readFile("./Files/new-asynch.txt", "utf-8", (err1, data1) => {
-      console.log(data1);
-
-      //appending a message to file.
-      fs.appendFile(
-        "./Files/new-asynch.txt",
-        messageAppend,
-        "utf-8",
-        (err2) => {
-          console.log(
-            "\nappending a message ... ... message successfully appended"
-          );
-
-          //reading the file with the appended message.
-          fs.readFile("./Files/new-asynch.txt", "utf-8", (err3, data3) => {
-            console.log(data3);
-          });
-        }
-      );
-    });
+// read file function
+function readingFile(pathName) {
+  fs.readFile(pathName, "utf-8", (err, data) => {
+    if (err) {
+      console.log("Error: ", err);
+      return;
+    }
+    console.log(data);
   });
-});
+}
+
+function writingFile(pathName, message) {
+  fs.writeFile(pathName, message, (err) => {
+    if (err) {
+      console.log("Error: ", err);
+      return;
+    }
+    console.log("Data written.");
+  });
+}
+
+function appendingData(pathName, messageAppend) {
+  fs.appendFile(pathName, messageAppend, (err) => {
+    if (err) {
+      console.log("Error: ", err);
+      return;
+    }
+    console.log("\nappending a message ... ... message successfully appended");
+  });
+}
