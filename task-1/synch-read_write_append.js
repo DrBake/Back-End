@@ -1,17 +1,35 @@
 // Reading and writing to a file synchronously
 const fs = require("fs");
+const path = require("path");
 
-// Reading a file
-let dataIn = fs.readFileSync("./Files/data-synch.txt", "utf-8");
+// path name
+const pathName = path.join(__dirname, "Files", "data-synch.txt");
 
-let message = "Hi there, my name is Lenox 👋";
-let messageAppend = "\nMy name is Lenox 👋";
+// data to write or append
+const writeData = "Hi there, my name is Lenox 👋";
+const appendData = "\nA back end software developer👨‍💻";
 
-// check if there is data in the file
-if (!dataIn) {
-  // Writing a file
-  fs.writeFileSync("./Files/data-synch.txt", message);
-} else {
-  // Appending a message to the file
-  fs.appendFileSync("./Files/data-synch.txt", messageAppend, "utf-8");
+//write function
+function fileWriting(pathName, writeData) {
+  fs.writeFileSync(pathName, writeData);
+  console.log("Data written\n");
 }
+
+// append data to file function
+function dataAppending(pathName, appendData) {
+  fs.appendFileSync(pathName, appendData);
+  console.log(". . . data saved\n");
+}
+
+// read file function
+function fileReading(pathName) {
+  console.log("Reading data . . .\n");
+  const readData = fs.readFileSync(pathName, "utf-8");
+  console.log(readData);
+}
+
+// reading, writing, appending and reading data synchronously
+fileReading(pathName);
+fileWriting(pathName, writeData);
+dataAppending(pathName, appendData);
+fileReading(pathName);
