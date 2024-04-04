@@ -8,7 +8,9 @@ const fileAppending = function (filePath, dataToAppend) {
         reject("Error: ", err);
         return;
       }
-      resolve("appending data. . . data was successfully appended.");
+      resolve(
+        "\nappending data. . . \n=== data was successfully appended. ==="
+      );
     });
   });
 };

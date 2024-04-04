@@ -8,7 +8,7 @@ const fileWriting = function (filePath, dataToWrite) {
         reject("Error: ", err);
         return;
       }
-      resolve("...writing data...\ndata successfully written.");
+      resolve("\n...writing data...\n=== data successfully written. ===");
     });
   });
 };

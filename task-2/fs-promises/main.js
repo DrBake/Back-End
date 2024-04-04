@@ -14,7 +14,7 @@ const __dirname = dirname(__filename);
 const dataToAppend =
   "\nI am Lenox, \nYou can challenge me to a game of chess.♟️";
 const dataToWrite =
-  "Hey there. \nI am Lenox. \nI am a backend software dev👨‍💻 who also likes playing chess.♟️";
+  "Hey there.👋 \nI am Lenox. \nI am a backend software dev 👨‍💻 who also likes playing chess.♟️";
 
 // file paths to read, append and write files
 const filePathRead = path.resolve(__dirname, "Files", "readThis.txt");
@@ -24,36 +24,18 @@ const filePathWrite = path.resolve(__dirname, "Files", "writeThis.txt");
 fileReading(filePathRead)
   .then((data) => {
     console.log(data);
+    return fileAppending(filePathAppend, dataToAppend);
   })
-  .then(
-    fileAppending(filePathAppend, dataToAppend).then((data) => {
-      console.log(data);
-    })
-  )
-  .then(
-    fileWriting(filePathWrite, dataToWrite).then((data) => {
-      console.log(data);
-    })
-  )
+  .then((appendData) => {
+    console.log(appendData);
+    return fileWriting(filePathWrite, dataToWrite);
+  })
+  .then((writeData) => {
+    console.log(writeData);
+  })
   .catch((err) => {
     console.log("Error: ", err);
   })
   .finally(() => {
-    console.log("Action Completed");
+    console.log("\n=== ACTION COMPLETED ===");
   });
-
-// fileAppending(filePathAppend, dataToAppend)
-//   .then((data) => {
-//     console.log(data);
-//   })
-//   .catch((err) => {
-//     console.log("Error: ", err);
-//   });
-
-// fileWriting(filePathWrite, dataToWrite)
-//   .then((data) => {
-//     console.log(data);
-//   })
-//   .catch((err) => {
-//     console.log("Error: ", err);
-//   });
