@@ -23,12 +23,17 @@ const filePathWrite = path.resolve(__dirname, "Files", "writeThis.txt");
 
 //async function that reads, appends and write data to a file
 async function readApppendWrite() {
-  const fileRead = await fileReading(filePathRead);
-  const fileAppend = await fileAppending(filePathAppend, dataToAppend);
-  const fileWrite = await fileWriting(filePathWrite, dataToWrite);
+  try {
+    const fileRead = await fileReading(filePathRead);
+    console.log(fileRead);
 
-  console.log(fileRead);
-  console.log(fileAppend);
-  console.log(fileWrite);
+    const fileAppend = await fileAppending(filePathAppend, dataToAppend);
+    console.log(fileAppend);
+
+    const fileWrite = await fileWriting(filePathWrite, dataToWrite);
+    console.log(fileWrite);
+  } catch (err) {
+    console.log("Error: ", err);
+  }
 }
 readApppendWrite();

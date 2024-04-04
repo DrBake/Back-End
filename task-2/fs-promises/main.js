@@ -21,18 +21,22 @@ const filePathRead = path.resolve(__dirname, "Files", "readThis.txt");
 const filePathAppend = path.resolve(__dirname, "Files", "appendThis.txt");
 const filePathWrite = path.resolve(__dirname, "Files", "writeThis.txt");
 
+// read file
 fileReading(filePathRead)
   .then((data) => {
     console.log(data);
     return fileAppending(filePathAppend, dataToAppend);
   })
+  //append data
   .then((appendData) => {
     console.log(appendData);
     return fileWriting(filePathWrite, dataToWrite);
   })
+  // write data
   .then((writeData) => {
     console.log(writeData);
   })
+  //catch error
   .catch((err) => {
     console.log("Error: ", err);
   })

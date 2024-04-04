@@ -22,7 +22,6 @@ const filePathRead = path.resolve(__dirname, "Files", "readThis.txt");
 const filePathAppend = path.resolve(__dirname, "Files", "appendThis.txt");
 const filePathWrite = path.resolve(__dirname, "Files", "writeThis.txt");
 
-// fileReading(filePathRead, "utf-8")
 //read append write async function
 async function readAppendWrite() {
   try {
