@@ -1,18 +1,10 @@
-import fs from "node:fs";
+const fsPromises = require("node:fs/promises");
 
-//function to append data to a file
-const fileAppending = function (filePath, dataToAppend) {
-  return new Promise((resolve, reject) => {
-    fs.appendFile(filePath, dataToAppend, (err) => {
-      if (err) {
-        reject("Error: ", err);
-        return;
-      }
-      resolve(
-        "\nappending data. . . \n=== data was successfully appended. ==="
-      );
-    });
-  });
-};
+//function to append data to a file using fs promises
+async function appendFile(filePathAppend, dataToAppend) {
+  console.log("=== appending data ===\n...  ... ...");
+  await fsPromises.appendFile(filePathAppend, dataToAppend);
+  console.log("=== data is successfully appended ===");
+}
 
-export default fileAppending;
+module.exports = appendFile;

@@ -1,14 +1,7 @@
-import path from "node:path";
-import fileReading from "./readFile.js";
-import fileAppending from "./appendFile.js";
-import fileWriting from "./writeFile.js";
-
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-
-//obtain directory name
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const path = require("node:path");
+const fileReading = require("./readFile.js");
+const fileAppending = require("./appendFile.js");
+const fileWriting = require("./writeFile.js");
 
 //data to append or write
 const dataToAppend =
@@ -21,25 +14,22 @@ const filePathRead = path.resolve(__dirname, "Files", "readThis.txt");
 const filePathAppend = path.resolve(__dirname, "Files", "appendThis.txt");
 const filePathWrite = path.resolve(__dirname, "Files", "writeThis.txt");
 
-// read file
-fileReading(filePathRead)
-  .then((data) => {
-    console.log(data);
-    return fileAppending(filePathAppend, dataToAppend);
-  })
-  //append data
-  .then((appendData) => {
-    console.log(appendData);
-    return fileWriting(filePathWrite, dataToWrite);
-  })
-  // write data
-  .then((writeData) => {
-    console.log(writeData);
-  })
-  //catch error
-  .catch((err) => {
-    console.log("Error: ", err);
-  })
-  .finally(() => {
-    console.log("\n=== ACTION COMPLETED ===");
-  });
+//function to read, write and append data to a file
+async function readWriteAppend() {
+  try {
+    const read = await fileReading(filePathRead);
+    console.log(read);
+
+    const write = await fileWriting(filePathWrite, dataToWrite);
+    console.log(write);
+
+    const append = await fileAppending(filePathAppend, dataToAppend);
+    console.log(append);
+  } catch (err) {
+    console.log(err);
+  } finally {
+    console.log("PROCESS COMPLETED");
+  }
+}
+
+readWriteAppend();

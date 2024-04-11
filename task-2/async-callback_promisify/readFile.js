@@ -1,5 +1,5 @@
-import fs from "node:fs";
-import util from "node:util";
+const fs = require("node:fs");
+const util = require("node:util");
 
 //promisify readfile function
 const readFile = util.promisify(fs.readFile);
@@ -11,4 +11,4 @@ async function fileReading(filePath) {
   console.log("=== data successfully read ===");
 }
 
-export default fileReading;
+module.exports = fileReading;

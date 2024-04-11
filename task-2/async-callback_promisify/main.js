@@ -1,15 +1,7 @@
-import path from "node:path";
-import fileReading from "./readFile.js";
-import fileAppending from "./appendFile.js";
-// import fileWriting from "./writeFile.js";
-
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-import fileWriting from "./writeFile.js";
-
-//obtain directory name
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const path = require("node:path");
+const fileReading = require("./readFile.js");
+const fileAppending = require("./appendFile.js");
+const fileWriting = require("./writeFile.js");
 
 //data to append or write
 const dataToAppend =

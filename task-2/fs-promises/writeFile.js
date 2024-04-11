@@ -1,16 +1,9 @@
-import fs from "node:fs";
+const fsPromises = require("node:fs/promises");
 
-//function to write data to a file
-const fileWriting = function (filePath, dataToWrite) {
-  return new Promise((resolve, reject) => {
-    fs.writeFile(filePath, dataToWrite, (err) => {
-      if (err) {
-        reject("Error: ", err);
-        return;
-      }
-      resolve("\n...writing data...\n=== data successfully written. ===");
-    });
-  });
-};
-
-export default fileWriting;
+//fnction to write a file
+async function fileWriting(filePathWrite, dataToWrite) {
+  console.log("=== writing data ===");
+  await fsPromises.writeFile(filePathWrite, dataToWrite);
+  console.log("=== data successfully written");
+}
+module.exports = fileWriting;

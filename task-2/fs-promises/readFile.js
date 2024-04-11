@@ -1,16 +1,10 @@
-import fs from "node:fs";
+const fsPromises = require("node:fs/promises");
 
-//read file function.
-const fileReading = function (filePath) {
-  console.log("Reading file . . .\n");
-  return new Promise((resolve, reject) => {
-    fs.readFile(filePath, "utf-8", (err, data) => {
-      if (err) {
-        reject("Error: " + err);
-        return;
-      }
-      resolve(data);
-    });
-  });
-};
-export default fileReading;
+//function to read a file
+async function fileReading(filePathRead) {
+  console.log("=== Reading data ===");
+  await fsPromises.readFile(filePathRead, "utf-8");
+  console.log("=== data successfully read ===");
+}
+
+module.exports = fileReading;
