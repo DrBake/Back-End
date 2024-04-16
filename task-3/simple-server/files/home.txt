@@ -1,0 +1,8 @@
+Hello there.
+This is the simplest CRUD server.
+
+To naviget to other routes, add:
+    /post (CREATE: make a post request and write new data to a file)
+    /get (READ: make a get request and display the data from the file)
+    /put (UPDATE: make a request and update data to an already existing data)
+    /delete (DELETE: delete a file)
